@@ -1,6 +1,6 @@
 ﻿using Bogus;
 
-namespace Wallet.UnitTest.Commons;
+namespace Wallets.UnitTest.Commons;
 
 public sealed class FakerSingleton
 {

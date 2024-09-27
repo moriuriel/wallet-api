@@ -1,9 +1,9 @@
 ﻿using Wallets.Domain.Shared;
-using Wallets.Domain.Entities;
+using Wallets.Domain.Entities.Interfaces;
 
 namespace Wallets.Domain.DomainServices.ProccessWithdrawRequest;
 
 public interface IProccessWithdrawRequestService
 {
-    Result Proccess(Wallet payer, Wallet receiver, float amount);
+    Result Proccess(IWallet payer, IWallet receiver, decimal amount);
 }

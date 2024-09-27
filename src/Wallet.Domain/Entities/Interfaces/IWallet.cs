@@ -7,8 +7,8 @@ public interface IWallet : IEntity
 {
     public AccountHolder AccountHolder { get; }
     public Account Account { get; }
-    public float Balance { get; }
-    public Result Depoist(float amount);
-    public Result Withdraw(float amount);
+    public decimal Balance { get; }
+    public Result Depoist(decimal amount);
+    public Result Withdraw(decimal amount);
 }
 

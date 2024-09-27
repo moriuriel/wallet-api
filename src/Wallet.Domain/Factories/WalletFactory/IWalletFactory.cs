@@ -7,5 +7,5 @@ public interface IWalletFactory
     IWallet Construct(
         AccountHolder accountHolder,
         Account account,
-        float balance);
+        decimal balance);
 }

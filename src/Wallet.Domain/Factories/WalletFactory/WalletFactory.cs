@@ -9,6 +9,6 @@ public class WalletFactory : IWalletFactory
     public IWallet Construct(
         AccountHolder accountHolder,
         Account account,
-        float balance)
-    => Wallet.Create(accountHolder, account, balance);
+        decimal balance)
+        => Wallet.Create(accountHolder, account, balance);
 }

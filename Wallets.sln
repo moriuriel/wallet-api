@@ -9,7 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{9688E9C0-1
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wallets.Domain", "src\Wallet.Domain\Wallets.Domain.csproj", "{40132A01-0530-4C76-B492-3289CA046A1B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wallet.UnitTest", "test\Wallet.UnitTest\Wallet.UnitTest.csproj", "{931E5AB7-B560-4C89-90FC-0E2EE5A81234}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wallets.UnitTest", "test\Wallet.UnitTest\Wallets.UnitTest.csproj", "{931E5AB7-B560-4C89-90FC-0E2EE5A81234}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

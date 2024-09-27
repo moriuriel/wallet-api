@@ -1,11 +1,12 @@
 ﻿using Wallets.Domain.Entities;
+using Wallets.Domain.Entities.Interfaces;
 using Wallets.Domain.Shared;
 
 namespace Wallets.Domain.DomainServices.ProccessWithdrawRequest;
 
 public sealed class ProccessWithdrawRequestService : IProccessWithdrawRequestService
 {
-    public Result Proccess(Wallet payer, Wallet receiver, float amount)
+    public Result Proccess(IWallet payer, IWallet receiver, decimal amount)
     {
         var withdrawResult = payer.Withdraw(amount);
 
@@ -13,6 +14,7 @@ public sealed class ProccessWithdrawRequestService : IProccessWithdrawRequestSer
             return withdrawResult;
 
         var depoistResult = receiver.Depoist(amount);
+        
         if (withdrawResult.IsFailure)
             return depoistResult;
 

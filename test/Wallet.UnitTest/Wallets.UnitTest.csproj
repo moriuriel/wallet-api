@@ -13,12 +13,14 @@
     <PackageReference Include="coverlet.collector" Version="6.0.2"><IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 <PrivateAssets>all</PrivateAssets>
 </PackageReference>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.10.0" />
-    <PackageReference Include="xunit" Version="2.9.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.11.1" />
+    <PackageReference Include="xunit" Version="2.9.2" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.8.2"><IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 <PrivateAssets>all</PrivateAssets>
 </PackageReference>
-    <PackageReference Include="Bogus" Version="35.6.0" />
+    <PackageReference Include="Bogus" Version="35.6.1" />
+    <PackageReference Include="Moq" Version="4.20.72" />
+    <PackageReference Include="FluentAssertions" Version="6.12.1" />
   </ItemGroup>
 
   <ItemGroup>
@@ -29,10 +31,19 @@
     <None Remove="Commons\" />
     <None Remove="Domain\" />
     <None Remove="Domain\Entities\" />
+    <None Remove="Commons\Builders\" />
+    <None Remove="Commons\Builders\Entities\" />
+    <None Remove="Commons\Builders\ValueObjects\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Commons\" />
     <Folder Include="Domain\" />
     <Folder Include="Domain\Entities\" />
+    <Folder Include="Commons\Builders\" />
+    <Folder Include="Commons\Builders\Entities\" />
+    <Folder Include="Commons\Builders\ValueObjects\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Wallet.Domain\Wallets.Domain.csproj" />
   </ItemGroup>
 </Project>
