@@ -10,21 +10,19 @@
     <None Remove="Entities\" />
     <None Remove="ValueObjects\" />
     <None Remove="Shared\" />
-    <None Remove="DomainServices\" />
-    <None Remove="DomainServices\ProccessWithdrawRequest\" />
     <None Remove="Entities\Interfaces\" />
     <None Remove="Factories\" />
     <None Remove="Factories\WalletFactory\" />
+    <None Remove="Services\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Entities\" />
     <Folder Include="ValueObjects\" />
     <Folder Include="Shared\" />
-    <Folder Include="DomainServices\" />
-    <Folder Include="DomainServices\ProccessWithdrawRequest\" />
     <Folder Include="Entities\Interfaces\" />
     <Folder Include="Factories\" />
     <Folder Include="Factories\WalletFactory\" />
+    <Folder Include="Services\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Class1.cs" />

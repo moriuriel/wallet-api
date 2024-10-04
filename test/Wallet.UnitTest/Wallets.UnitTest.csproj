@@ -34,6 +34,9 @@
     <None Remove="Commons\Builders\" />
     <None Remove="Commons\Builders\Entities\" />
     <None Remove="Commons\Builders\ValueObjects\" />
+    <None Remove="Domain\Factories\" />
+    <None Remove="Domain\Services\" />
+    <None Remove="Domain\Services\ProcessPaymentRequest\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Commons\" />
@@ -42,6 +45,9 @@
     <Folder Include="Commons\Builders\" />
     <Folder Include="Commons\Builders\Entities\" />
     <Folder Include="Commons\Builders\ValueObjects\" />
+    <Folder Include="Domain\Factories\" />
+    <Folder Include="Domain\Services\" />
+    <Folder Include="Domain\Services\ProcessPaymentRequest\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\Wallet.Domain\Wallets.Domain.csproj" />

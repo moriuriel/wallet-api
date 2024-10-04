@@ -5,6 +5,7 @@ using Wallets.Domain.Entities;
 using FluentAssertions;
 using Wallets.UnitTest.Commons.Builders.Entities;
 using Wallets.Domain.Shared;
+using Wallets.UnitTest.Commons.Builders.ValueObjects;
 
 namespace Wallets.UnitTest.Domain.Entities;
 
@@ -17,13 +18,8 @@ public class WalletTest
         bool setNullableFields)
     {
         //Arrange
-        var name = FakerSingleton.GetInstance().Faker.Person.FullName;
-        var taxId = FakerSingleton.GetInstance().Faker.Person.Cpf(includeFormatSymbols: false);
-        var accountHolder = new AccountHolder(name, taxId);
-
-        var accountNumber = FakerSingleton.GetInstance().Faker.Finance.Account(length: 6);
-        var accountBranch = FakerSingleton.GetInstance().Faker.Finance.Account(length: 2);
-        var account = new Account(accountNumber, accountBranch);
+        var accountHolder = new AccountHolderBuilder().Build();
+        var account = new AccountBuilder().Build();
 
         var balance = FakerSingleton.GetInstance().Faker.Finance.Amount();
         Guid id = setNullableFields ? FakerSingleton.GetInstance().Faker.Random.Uuid() : Guid.Empty;

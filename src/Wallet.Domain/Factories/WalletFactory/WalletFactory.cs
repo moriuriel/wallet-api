@@ -10,5 +10,8 @@ public class WalletFactory : IWalletFactory
         AccountHolder accountHolder,
         Account account,
         decimal balance)
-        => Wallet.Create(accountHolder, account, balance);
+        => Wallet.Create(
+            accountHolder,
+            account,
+            balance);
 }
