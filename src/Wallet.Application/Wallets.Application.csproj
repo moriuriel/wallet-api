@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="12.4.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="UseCases\" />
+    <None Remove="UseCases\CreateWallet\" />
+    <None Remove="Commons\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="UseCases\" />
+    <Folder Include="UseCases\CreateWallet\" />
+    <Folder Include="Commons\" />
+  </ItemGroup>
+</Project>
