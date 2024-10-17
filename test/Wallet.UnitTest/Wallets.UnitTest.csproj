@@ -51,5 +51,6 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\Wallet.Domain\Wallets.Domain.csproj" />
+    <ProjectReference Include="..\..\src\Wallet.Application\Wallets.Application.csproj" />
   </ItemGroup>
 </Project>

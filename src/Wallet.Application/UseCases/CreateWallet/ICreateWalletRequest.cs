@@ -2,6 +2,7 @@
 using Wallets.Domain.Entities.Interfaces;
 
 namespace Wallets.Application.UseCases.CreateWallet;
+
 public interface ICreateWalletRequest
 {
     AccountHolderModel AccountHolderModel { get; }

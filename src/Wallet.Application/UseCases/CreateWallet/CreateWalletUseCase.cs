@@ -3,7 +3,8 @@ using Wallets.Domain.Interfaces;
 
 namespace Wallets.Application.UseCases.CreateWallet;
 
-public sealed class CreateWalletUseCase(IWalletRepository walletRepository) 
+public sealed class CreateWalletUseCase(
+    IWalletRepository walletRepository) 
 : ICreateWalletUseCase
 {
     public async Task<Response<CreateWalletResponse>> HandleAsync(
