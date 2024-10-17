@@ -3,20 +3,16 @@ using Wallets.Domain.Interfaces;
 
 namespace Wallets.Application.UseCases.CreateWallet;
 
-public sealed class CreateWalletUseCase : ICreateWalletUseCase
+public sealed class CreateWalletUseCase(IWalletRepository walletRepository) 
+: ICreateWalletUseCase
 {
-    private readonly IWalletRepository _walletRepository;
-
-    public CreateWalletUseCase(IWalletRepository walletRepository)
-        => _walletRepository = walletRepository;
-
     public async Task<Response<CreateWalletResponse>> HandleAsync(
         ICreateWalletRequest request,
         CancellationToken cancellationToken)
     {
         var wallet = request.ToWallet();
 
-       await _walletRepository.InsertAsync(
+       await walletRepository.InsertAsync(
             wallet,
             cancellationToken);
 
