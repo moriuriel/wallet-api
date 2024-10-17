@@ -1,11 +1,11 @@
-﻿using System;
-namespace Wallets.Application.UseCases.CreateWallet
+﻿namespace Wallets.Application.UseCases.CreateWallet;
+public sealed class CreateWalletResponse
 {
-	public class CreateWalletResponse
-	{
-		public CreateWalletResponse()
-		{
-		}
-	}
-}
+    private CreateWalletResponse(Guid id)
+        => Id = id;
 
+    public Guid Id { get; private set; }
+
+    public static CreateWalletResponse Factory(Guid id)
+        => new(id);
+}

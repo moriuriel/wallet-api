@@ -1,6 +1,7 @@
 ﻿using Wallets.Domain.ValueObjects;
 
 namespace Wallets.UnitTest.Commons.Builders.ValueObjects;
+
 public class AccountBuilder : BuilderBase<Account>
 {
     public AccountBuilder()
@@ -13,5 +14,5 @@ public class AccountBuilder : BuilderBase<Account>
     private readonly string _branch;
 
     public override Account Build()
-        => new(_number, _branch);
+        => Account.Factory(_number, _branch);
 }

@@ -1,15 +1,15 @@
 ﻿using Wallets.Domain.Entities.Interfaces;
 using Wallets.Domain.Shared;
-using Wallets.Domain.ValueObjects;
+using Wallets.Domain.ValueObjects.Interfaces;
 
 namespace Wallets.Domain.Entities;
 
 public class Wallet : AggregateRoot, IWallet
 {
     private Wallet(
-        AccountHolder accountHolder,
-        Account account,
-        decimal balance,
+        IAccountHolder accountHolder,
+        IAccount account,
+        decimal? balance = null,
         Guid? id = null) : base(id: id ?? Guid.NewGuid())
     {
         Account = account;
@@ -17,14 +17,14 @@ public class Wallet : AggregateRoot, IWallet
         AccountHolder = accountHolder;
     }
 
-    public AccountHolder AccountHolder { get; }
-    public Account Account { get; }
-    public decimal Balance { get; private set; }
+    public IAccountHolder AccountHolder { get; }
+    public IAccount Account { get; }
+    public decimal? Balance { get; private set; }
 
     public static Wallet Create(
-        AccountHolder accountHolder,
-        Account account,
-        decimal balance,
+        IAccountHolder accountHolder,
+        IAccount account,
+        decimal? balance = null,
         Guid? id = null)
         => new(
             accountHolder,

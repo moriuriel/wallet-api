@@ -1,7 +1,23 @@
-﻿namespace Wallets.Domain.ValueObjects;
+﻿using Wallets.Domain.ValueObjects.Interfaces;
 
-public sealed record AccountHolder(string Name, string TaxId)
+namespace Wallets.Domain.ValueObjects;
+
+public sealed class AccountHolder : IAccountHolder
 {
-    public string Name { get; } = Name;
-    public string TaxId { get; } = TaxId;
+    private AccountHolder(string name, string taxId)
+    {
+        Name = name;
+        TaxId = taxId;
+    }
+
+    public string Name { get; private set; }
+
+    public string TaxId { get; private set; }
+
+    public static AccountHolder Factory(
+        string name,
+        string taxId)
+        => new(
+            name,
+            taxId);
 }

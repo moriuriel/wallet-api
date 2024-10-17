@@ -14,6 +14,8 @@
     <None Remove="Factories\" />
     <None Remove="Factories\WalletFactory\" />
     <None Remove="Services\" />
+    <None Remove="Interfaces\" />
+    <None Remove="ValueObjects\Interfaces\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Entities\" />
@@ -23,6 +25,8 @@
     <Folder Include="Factories\" />
     <Folder Include="Factories\WalletFactory\" />
     <Folder Include="Services\" />
+    <Folder Include="Interfaces\" />
+    <Folder Include="ValueObjects\Interfaces\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Class1.cs" />

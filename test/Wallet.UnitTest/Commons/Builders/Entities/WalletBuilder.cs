@@ -1,5 +1,5 @@
 ﻿using Wallets.Domain.Entities;
-using Wallets.Domain.ValueObjects;
+using Wallets.Domain.ValueObjects.Interfaces;
 using Wallets.UnitTest.Commons.Builders.ValueObjects;
 
 namespace Wallets.UnitTest.Commons.Builders.Entities;
@@ -13,8 +13,8 @@ public sealed class WalletBuilder : BuilderBase<Wallet>
         _balance = FakerSingleton.GetInstance().Faker.Finance.Amount();
     }
 
-    private readonly Account _account;
-    private readonly AccountHolder _accountHolder;
+    private readonly IAccount _account;
+    private readonly IAccountHolder _accountHolder;
     private decimal _balance;
 
     public WalletBuilder WithBalance(decimal balance)

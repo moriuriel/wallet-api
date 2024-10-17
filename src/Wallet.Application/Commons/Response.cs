@@ -3,15 +3,12 @@ public class Response<T>
 {
     private Response(
         ResponseType type,
-        T? content)
+        T? content = default)
     {
         Content = content;
         Type = type;
     }
-
-    private Response(ResponseType type)
-        => Type = type;
-
+    
     public T? Content { get; private set; }
     public ResponseType Type { get; private set; }
 

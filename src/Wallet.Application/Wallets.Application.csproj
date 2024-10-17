@@ -13,10 +13,15 @@
     <None Remove="UseCases\" />
     <None Remove="UseCases\CreateWallet\" />
     <None Remove="Commons\" />
+    <None Remove="UseCases\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="UseCases\" />
     <Folder Include="UseCases\CreateWallet\" />
     <Folder Include="Commons\" />
+    <Folder Include="UseCases\Shared\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Wallet.Domain\Wallets.Domain.csproj" />
   </ItemGroup>
 </Project>
