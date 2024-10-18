@@ -17,5 +17,7 @@ public class CreateWalletUseCaseTest
 
   [Fact]
   public async Task ExecuteMethodHandleAsync_WithValidValues_ShouldReturnSuccess()
-  {}
+  {
+    
+  }
 }
