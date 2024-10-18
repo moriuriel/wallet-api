@@ -68,6 +68,11 @@ public class CreateWalletUseCaseTest
     _walletRepositoryMock.Verify(
         _ => _.InsertAsync(_wallet.Object, _cancellationToken),
         times: Times.Once);
+
+    _walletRepositoryMock.Verify(_ => _.IsExistsAccountHolderAsync(
+        wallet.AccountHolder.TaxId,
+        _cancellationToken), 
+      times: Times.Once);
   }
 
   [Fact]
@@ -114,5 +119,10 @@ public class CreateWalletUseCaseTest
     _walletRepositoryMock.Verify(
         _ => _.InsertAsync(_wallet.Object, _cancellationToken),
         times: Times.Never);
+        
+    _walletRepositoryMock.Verify(_ => _.IsExistsAccountHolderAsync(
+        wallet.AccountHolder.TaxId,
+        _cancellationToken), 
+      times: Times.Once);
   }
 }
