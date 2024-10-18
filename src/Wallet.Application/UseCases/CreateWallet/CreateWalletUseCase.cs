@@ -13,6 +13,11 @@ public sealed class CreateWalletUseCase(
     {
         var wallet = request.ToWallet();
 
+        if(await walletRepository.IsExistsAccountHolderAsync(
+            wallet.AccountHolder.TaxId,
+            cancellationToken))
+            return Response<CreateWalletResponse>.Conflict();
+
        await walletRepository.InsertAsync(
             wallet,
             cancellationToken);

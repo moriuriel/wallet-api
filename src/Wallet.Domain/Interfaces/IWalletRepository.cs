@@ -6,4 +6,8 @@ public interface IWalletRepository
     Task InsertAsync(
         IWallet wallet,
         CancellationToken cancellationToken);
+
+    Task<bool> IsExistsAccountHolderAsync(
+        string taxId,
+        CancellationToken cancellationToken);
 }

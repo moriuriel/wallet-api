@@ -18,6 +18,9 @@ public class Response<T>
     public static Response<T> ContentNotExists()
         => new(type: ResponseType.ContentNotExits);
 
+    public static Response<T> Conflict()
+        => new(type: ResponseType.Conflict);
+
     public static Response<T> Created(T? content)
         => new(type: ResponseType.Created, content);
 

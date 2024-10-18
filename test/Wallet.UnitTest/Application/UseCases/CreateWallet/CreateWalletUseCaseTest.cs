@@ -40,6 +40,15 @@ public class CreateWalletUseCaseTest
     var wallet = new WalletBuilder().Build();
     _wallet.SetupGet(_ => _.Id)
       .Returns(wallet.Id);
+    
+    _wallet.SetupGet(_ => _.AccountHolder.TaxId)
+      .Returns(wallet.AccountHolder.TaxId);
+      
+    var isExistsAccountHolder = false;
+    _walletRepositoryMock.Setup(_ => _.IsExistsAccountHolderAsync(
+        wallet.AccountHolder.TaxId,
+        _cancellationToken))
+      .ReturnsAsync(isExistsAccountHolder);
 
     var content = CreateWalletResponse.Factory(wallet.Id);
 
@@ -59,5 +68,51 @@ public class CreateWalletUseCaseTest
     _walletRepositoryMock.Verify(
         _ => _.InsertAsync(_wallet.Object, _cancellationToken),
         times: Times.Once);
+  }
+
+  [Fact]
+  public async Task ExecuteMethodHandleAsync_WithDuplicateAccountHolder_ShouldReturnConflict()
+  {
+     //Arrange
+    var request = new CreateWalletRequestBuilder().Build();
+
+    _request.SetupGet(_ => _.AccountHolderModel)
+      .Returns(request.AccountHolderModel);
+
+    _request.SetupGet(_ => _.AccountModel)
+      .Returns(request.AccountModel);
+
+    _request.Setup(_ => _.ToWallet())
+      .Returns(_wallet.Object);
+
+    var wallet = new WalletBuilder().Build();
+    _wallet.SetupGet(_ => _.Id)
+      .Returns(wallet.Id);
+
+    _wallet.SetupGet(_ => _.AccountHolder.TaxId)
+      .Returns(wallet.AccountHolder.TaxId);
+
+    var isExistsAccountHolder = true;
+    _walletRepositoryMock.Setup(_ => _.IsExistsAccountHolderAsync(
+        wallet.AccountHolder.TaxId,
+        _cancellationToken))
+      .ReturnsAsync(isExistsAccountHolder);
+
+    //Act
+    var response = await _useCase.HandleAsync(
+        _request.Object,
+        _cancellationToken);
+    
+    //Assert
+    response.Type.Should().Be(Response<CreateWalletResponse>.ResponseType.Conflict);
+    response.Content.Should().BeNull();
+    
+    _request.Verify(
+      _ => _.ToWallet(), 
+      times: Times.Once);
+      
+    _walletRepositoryMock.Verify(
+        _ => _.InsertAsync(_wallet.Object, _cancellationToken),
+        times: Times.Never);
   }
 }
