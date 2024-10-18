@@ -3,7 +3,7 @@ using Wallets.Domain.ValueObjects.Interfaces;
 
 namespace Wallets.Application.UseCases.Shared;
 
-public sealed record AccountHolderModel
+public sealed class AccountHolderModel
 {
     public string Name { get; init; } = string.Empty;
 

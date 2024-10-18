@@ -2,7 +2,7 @@
 using Wallets.Domain.ValueObjects.Interfaces;
 
 namespace Wallets.Application.UseCases.Shared;
-public sealed record AccountModel
+public sealed class AccountModel
 {
     public string Number { get; init; } = string.Empty;
 
