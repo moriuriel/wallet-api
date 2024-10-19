@@ -7,7 +7,7 @@ namespace Wallets.UnitTest.Application.UseCases.CreateWallet.Builders;
 
 public class AccountHolderModelBuilder : BuilderBase<AccountHolderModel>
 {
-    private readonly string _name;
+    private string _name;
     private readonly string _taxId;
 
     public AccountHolderModelBuilder()
@@ -15,6 +15,11 @@ public class AccountHolderModelBuilder : BuilderBase<AccountHolderModel>
       _name = FakerSingleton.GetInstance().Faker.Person.FullName;
       _taxId = FakerSingleton.GetInstance().Faker.Person.Cpf(
         includeFormatSymbols: false);
+    }
+    public AccountHolderModelBuilder WithInvalidName()
+    {
+      _name = string.Empty;
+      return this;
     }
 
     public override AccountHolderModel Build()

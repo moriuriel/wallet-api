@@ -1,5 +1,6 @@
 using System;
 using FluentAssertions;
+using FluentValidation;
 using Moq;
 using Wallets.Application.Commons;
 using Wallets.Application.UseCases.CreateWallet;
@@ -14,14 +15,16 @@ public class CreateWalletUseCaseTest
 {
     public CreateWalletUseCaseTest() 
       => _useCase = new(
-        walletRepository: _walletRepositoryMock.Object);
+        walletRepository: _walletRepositoryMock.Object,
+        validator: _validatorMock.Object);
 
   private readonly Mock<ICreateWalletRequest> _request = new();
   private readonly Mock<IWalletRepository> _walletRepositoryMock = new();
   private readonly CreateWalletUseCase _useCase;
   private readonly CancellationToken _cancellationToken = CancellationToken.None;
   private readonly Mock<IWallet> _wallet = new();
-
+  private readonly Mock<IValidator<CreateWalletRequest>> _validatorMock = new();
+  
   [Fact]
   public async Task ExecuteMethodHandleAsync_WithValidValues_ShouldReturnSuccess()
   {
