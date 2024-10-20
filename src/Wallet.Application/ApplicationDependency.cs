@@ -1,9 +1,11 @@
+using System.Diagnostics.CodeAnalysis;
 using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 using Wallets.Application.UseCases.CreateWallet;
 
 namespace Wallets.Application;
 
+[ExcludeFromCodeCoverage]
 public static class ApplicationDependency
 {
   public static IServiceCollection AddApplicationDependency(this IServiceCollection services)
