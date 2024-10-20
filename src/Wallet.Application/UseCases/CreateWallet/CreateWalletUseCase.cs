@@ -13,7 +13,7 @@ public sealed class CreateWalletUseCase(
         ICreateWalletRequest request,
         CancellationToken cancellationToken)
     {
-        var validationResult = validator.Validate(request);
+        var validationResult = await validator.ValidateAsync(request, cancellationToken);
         if(!validationResult.IsValid)
             return Response<CreateWalletResponse>.ValidationError(validationResult);
 
