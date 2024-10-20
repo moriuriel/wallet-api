@@ -8,7 +8,7 @@ namespace Wallets.UnitTest.Application.UseCases.CreateWallet.Builders;
 public class AccountHolderModelBuilder : BuilderBase<AccountHolderModel>
 {
     private string _name;
-    private readonly string _taxId;
+    private string _taxId;
 
     public AccountHolderModelBuilder()
     {
@@ -16,9 +16,10 @@ public class AccountHolderModelBuilder : BuilderBase<AccountHolderModel>
       _taxId = FakerSingleton.GetInstance().Faker.Person.Cpf(
         includeFormatSymbols: false);
     }
-    public AccountHolderModelBuilder WithInvalidName()
+    public AccountHolderModelBuilder WithEmptyContent()
     {
       _name = string.Empty;
+      _taxId = string.Empty;
       return this;
     }
 
