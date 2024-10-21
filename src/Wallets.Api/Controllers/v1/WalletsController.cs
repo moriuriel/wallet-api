@@ -1,12 +1,13 @@
-using System.Net;
+using Asp.Versioning;
 using Microsoft.AspNetCore.Mvc;
 using Wallets.Application.Commons;
 using Wallets.Application.UseCases.CreateWallet;
 
 namespace Wallets.Api.Controllers.v1;
 
-[Route("api/[controller]")]
 [ApiController]
+[ApiVersion("1")]
+[Route("api/v{version:apiVersion}/wallets")]
 public class WalletsController(ICreateWalletUseCase createWalletUseCase) : ControllerBase
 {
     [HttpPost()]
