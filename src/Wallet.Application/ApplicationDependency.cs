@@ -12,7 +12,7 @@ public static class ApplicationDependency
     => services
       .AddUseCases()
       .AddValidators();
-      
+
   public static IServiceCollection AddUseCases(this IServiceCollection services)
   {
     services.AddScoped<ICreateWalletUseCase, CreateWalletUseCase>();

@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Wallet.Application\Wallets.Application.csproj" />
+    <ProjectReference Include="..\Wallets.Database\Wallets.Database.csproj" />
   </ItemGroup>
 
 </Project>
