@@ -5,11 +5,11 @@ using Wallets.Domain.Entities.Interfaces;
 namespace Wallets.Application.UseCases.CreateWallet;
 public sealed class CreateWalletRequest : ICreateWalletRequest
 {
-    public required AccountHolderModel AccountHolderModel { get; init; }
-    public required AccountModel AccountModel { get; init; }
+     public required AccountHolderModel AccountHolderModel { get; init; }
+     public required AccountModel AccountModel { get; init; }
 
-    public IWallet ToWallet()
-        => Wallet.Create(
-            accountHolder: AccountHolderModel.ToAccountHolder(),
-            account: AccountModel.ToAccount());
+     public IWallet ToWallet()
+         => Wallet.Create(
+             accountHolder: AccountHolderModel.ToAccountHolder(),
+             account: AccountModel.ToAccount());
 }

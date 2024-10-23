@@ -10,4 +10,8 @@ public interface IWalletRepository
     Task<bool> IsExistsAccountHolderAsync(
         string taxId,
         CancellationToken cancellationToken);
+    
+    Task<IWallet> FindByIdAsync(
+        Guid id,
+        CancellationToken cancellationToken);
 }

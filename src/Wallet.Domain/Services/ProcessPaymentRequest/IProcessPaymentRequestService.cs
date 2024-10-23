@@ -5,8 +5,8 @@ namespace Wallets.Domain.Services.ProcessPaymentRequest;
 
 public interface IProcessPaymentRequestService
 {
-    Result Proccess(
-        IWallet payer,
-        IWallet receiver,
-        decimal amount);
+     Result Proccess(
+         IWallet payer,
+         IWallet receiver,
+         decimal amount);
 }

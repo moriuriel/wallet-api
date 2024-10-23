@@ -5,7 +5,7 @@ namespace Wallets.Application.UseCases.CreateWallet;
 
 public interface ICreateWalletRequest
 {
-    AccountHolderModel AccountHolderModel { get; }
-    AccountModel AccountModel { get; }
-    IWallet ToWallet();
+     AccountHolderModel AccountHolderModel { get; }
+     AccountModel AccountModel { get; }
+     IWallet ToWallet();
 }

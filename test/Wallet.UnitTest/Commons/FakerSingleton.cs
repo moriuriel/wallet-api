@@ -4,23 +4,23 @@ namespace Wallets.UnitTest.Commons;
 
 public sealed class FakerSingleton
 {
-    public Faker Faker { get; } = new Faker("pt_BR");
+     public Faker Faker { get; } = new Faker("pt_BR");
 
-    private static FakerSingleton? _instance;
-    private static readonly object _lock = new();
+     private static FakerSingleton? _instance;
+     private static readonly object _lock = new();
 
-    private FakerSingleton()
-    {
-    }
+     private FakerSingleton()
+     {
+     }
 
-    public static FakerSingleton GetInstance()
-    {
-        if (_instance is null)
-        {
-            lock (_lock)
-                _instance ??= new FakerSingleton();
-        }
+     public static FakerSingleton GetInstance()
+     {
+          if (_instance is null)
+          {
+               lock (_lock)
+                    _instance ??= new FakerSingleton();
+          }
 
-        return _instance;
-    }
+          return _instance;
+     }
 }

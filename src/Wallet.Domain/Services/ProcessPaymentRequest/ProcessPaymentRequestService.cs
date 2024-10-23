@@ -6,21 +6,21 @@ namespace Wallets.Domain.Services.ProcessPaymentRequest;
 public sealed class ProcessPaymentRequestService
     : IProcessPaymentRequestService
 {
-    public Result Proccess(
-        IWallet payer,
-        IWallet receiver,
-        decimal amount)
-    {
-        var withdrawResult = payer.Withdraw(amount);
+     public Result Proccess(
+         IWallet payer,
+         IWallet receiver,
+         decimal amount)
+     {
+          var withdrawResult = payer.Withdraw(amount);
 
-        if (withdrawResult.IsFailure)
-            return withdrawResult;
+          if (withdrawResult.IsFailure)
+               return withdrawResult;
 
-        var depoistResult = receiver.Depoist(amount);
-        
-        if (depoistResult.IsFailure)
-            return depoistResult;
+          var depoistResult = receiver.Depoist(amount);
 
-        return Result.Success();
-    }
+          if (depoistResult.IsFailure)
+               return depoistResult;
+
+          return Result.Success();
+     }
 }

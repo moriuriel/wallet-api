@@ -4,8 +4,8 @@ namespace Wallets.Domain.Entities;
 
 public class Entity : IEntity
 {
-    public Guid Id { get; protected init; }
+     public Guid Id { get; protected init; }
 
-    protected Entity(Guid id)
-        => Id = id;
+     protected Entity(Guid id)
+         => Id = id;
 }

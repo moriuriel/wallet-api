@@ -5,10 +5,10 @@ namespace Wallets.Domain.Entities.Interfaces;
 
 public interface IWallet : IEntity
 {
-    public IAccountHolder AccountHolder { get; }
-    public IAccount Account { get; }
-    public decimal? Balance { get; }
-    public Result Depoist(decimal amount);
-    public Result Withdraw(decimal amount);
+     public IAccountHolder AccountHolder { get; }
+     public IAccount Account { get; }
+     public decimal? Balance { get; }
+     public Result Depoist(decimal amount);
+     public Result Withdraw(decimal amount);
 }
 

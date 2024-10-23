@@ -2,5 +2,5 @@
 
 public abstract class BuilderBase<T> where T : notnull
 {
-    public abstract T Build();
+     public abstract T Build();
 }
