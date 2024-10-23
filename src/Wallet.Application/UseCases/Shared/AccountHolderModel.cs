@@ -13,4 +13,12 @@ public sealed class AccountHolderModel
         => AccountHolder.Factory(
             Name,
             TaxId);
+    
+    public static AccountHolderModel FactoryByValueObject(
+        IAccountHolder accountHolder)
+        => new()
+        {
+            Name = accountHolder.Name,
+            TaxId = accountHolder.TaxId
+        };
 }

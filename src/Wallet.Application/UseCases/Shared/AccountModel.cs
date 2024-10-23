@@ -12,4 +12,12 @@ public sealed class AccountModel
         => Account.Factory(
             Number,
             Branch);
+    
+    public static AccountModel FactoryByValueObject(
+        IAccount account)
+        => new()
+        {
+            Number = account.Number,
+            Branch = account.Branch
+        };
 }
