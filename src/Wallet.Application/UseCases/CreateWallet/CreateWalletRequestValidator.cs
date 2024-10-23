@@ -22,7 +22,8 @@ public class AccountHolderModelValidator : AbstractValidator<AccountHolderModel>
   {
     RuleFor(_ => _.Name)
       .NotEmpty()
-      .WithMessage(Messsage.ValidationError.EMPTY_FIELD);
+      .WithMessage(Messsage.ValidationError.EMPTY_FIELD)
+      .MaximumLength(100);
 
       RuleFor(_ => _.TaxId)
         .NotEmpty()
@@ -36,10 +37,14 @@ public class AccountModelValidator : AbstractValidator<AccountModel>
   {
     RuleFor(_ => _.Branch)
       .NotEmpty()
-      .WithMessage(Messsage.ValidationError.EMPTY_FIELD);
+      .WithMessage(Messsage.ValidationError.EMPTY_FIELD)
+      .MaximumLength(6)
+      .MinimumLength(6);
 
       RuleFor(_ => _.Number)
         .NotEmpty()
-        .WithMessage(Messsage.ValidationError.EMPTY_FIELD);
+        .WithMessage(Messsage.ValidationError.EMPTY_FIELD)
+        .MaximumLength(2)
+        .MinimumLength(2);
   }
 }

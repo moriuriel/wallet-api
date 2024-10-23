@@ -7,7 +7,7 @@ namespace Wallets.Api.Controllers.v1;
 
 [ApiController]
 [ApiVersion("1")]
-[Route("api/v{version:apiVersion}/wallets")]
+[Route("v{version:apiVersion}/wallets")]
 public class WalletsController(ICreateWalletUseCase createWalletUseCase) : ControllerBase
 {
     [HttpPost()]
