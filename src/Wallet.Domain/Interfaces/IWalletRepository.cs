@@ -11,7 +11,7 @@ public interface IWalletRepository
         string taxId,
         CancellationToken cancellationToken);
     
-    Task<IWallet> FindByIdAsync(
+    Task<IWallet?> FindByIdAsync(
         Guid id,
         CancellationToken cancellationToken);
 }

@@ -5,6 +5,7 @@ using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 
 using Wallets.Application.UseCases.CreateWallet;
+using Wallets.Application.UseCases.FindWalletById;
 
 namespace Wallets.Application;
 
@@ -19,6 +20,7 @@ public static class ApplicationDependency
      public static IServiceCollection AddUseCases(this IServiceCollection services)
      {
           services.AddScoped<ICreateWalletUseCase, CreateWalletUseCase>();
+          services.AddScoped<IFindWalletByIdUseCase, FindWalletByIdUseCase>();
           return services;
      }
 

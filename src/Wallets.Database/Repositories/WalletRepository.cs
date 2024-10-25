@@ -13,9 +13,30 @@ public sealed class WalletRepository : IWalletRepository
      public WalletRepository(IDbConnection dbConnection)
        => _dbConnection = dbConnection;
 
-     public Task<IWallet> FindByIdAsync(Guid id, CancellationToken cancellationToken)
+     public async Task<IWallet?> FindByIdAsync(Guid id, CancellationToken cancellationToken)
      {
-          throw new NotImplementedException();
+          var rawSql = $@"SELECT 
+                              id as {nameof(WalletMapper.Id)},
+                              name as {nameof(WalletMapper.Name)},
+                              tax_id as {nameof(WalletMapper.TaxId)},
+                              account_branch as {nameof(WalletMapper.AccountBranch)},
+                              account_number as {nameof(WalletMapper.AccountNumber)} 
+                         FROM public.wallets WHERE id = @{nameof(id)}";
+
+          var command = new CommandDefinition(
+               commandText: rawSql,
+               parameters: new {
+                    id = id.ToString(),
+               },
+               cancellationToken: cancellationToken
+          );
+
+          var wallet = await _dbConnection.QuerySingleAsync<WalletMapper>(command);
+
+          if(wallet is null)
+               return default;
+          
+          return wallet.FactoryByMapper();
      }
 
      public Task InsertAsync(

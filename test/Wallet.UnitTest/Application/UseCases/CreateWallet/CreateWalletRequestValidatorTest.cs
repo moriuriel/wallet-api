@@ -38,15 +38,16 @@ public class CreateWalletRequestValidatorTest
             .WithAccountHolder(accountHolderModel)
             .Build();
 
-          const int errorNumebr = 2;
+          const int errorNumber = 2;
 
           //Act
           var result = await _validator.ValidateAsync(request);
 
           //Assert
           result.IsValid.Should().BeFalse();
-          result.Errors.Should().HaveCount(errorNumebr);
+          result.Errors.Should().HaveCount(errorNumber);
           result.Errors.Should().Contain(
-            _ => _.ErrorMessage == string.Format(Messsage.ValidationError.EMPTY_FIELD, nameof(AccountHolderModel.Name)));
+            _ => _.ErrorMessage == string.Format(
+               Messsage.ValidationError.EMPTY_FIELD, nameof(AccountHolderModel.Name)));
      }
 }

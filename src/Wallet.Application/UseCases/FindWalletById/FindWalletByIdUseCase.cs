@@ -3,7 +3,7 @@ using Wallets.Domain.Interfaces;
 
 namespace Wallets.Application.UseCases.FindWalletById;
 
-internal sealed class FindByWalletByIdUseCase(
+public sealed class FindWalletByIdUseCase(
   IWalletRepository walletRepository) : IFindWalletByIdUseCase
 {
      public async Task<Response<FindWalletByIdResponse>> HandleAsync(

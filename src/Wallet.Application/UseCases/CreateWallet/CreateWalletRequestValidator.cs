@@ -39,13 +39,13 @@ public class AccountModelValidator : AbstractValidator<AccountModel>
           RuleFor(_ => _.Branch)
             .NotEmpty()
             .WithMessage(Messsage.ValidationError.EMPTY_FIELD)
-            .MaximumLength(6)
-            .MinimumLength(6);
+            .MaximumLength(2)
+            .MinimumLength(2);
 
           RuleFor(_ => _.Number)
             .NotEmpty()
             .WithMessage(Messsage.ValidationError.EMPTY_FIELD)
-            .MaximumLength(2)
-            .MinimumLength(2);
+            .MaximumLength(6)
+            .MinimumLength(6);
      }
 }
