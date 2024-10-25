@@ -1,5 +1,8 @@
-﻿namespace Wallets.Domain.Shared;
+﻿using System.Diagnostics.CodeAnalysis;
 
+namespace Wallets.Domain.Shared;
+
+[ExcludeFromCodeCoverage]
 public record Error
 {
      public Error(string code, string message)

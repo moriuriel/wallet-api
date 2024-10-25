@@ -1,5 +1,8 @@
-﻿namespace Wallets.Domain.Shared;
+﻿using System.Diagnostics.CodeAnalysis;
 
+namespace Wallets.Domain.Shared;
+
+[ExcludeFromCodeCoverage]
 public class Result
 {
      protected internal Result(bool isSuccess, Error error)

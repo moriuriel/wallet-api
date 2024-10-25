@@ -1,5 +1,8 @@
-﻿namespace Wallets.Domain.Shared;
+﻿using System.Diagnostics.CodeAnalysis;
 
+namespace Wallets.Domain.Shared;
+
+[ExcludeFromCodeCoverage]
 public class Result<TValue> : Result
 {
      private readonly TValue? _value;
