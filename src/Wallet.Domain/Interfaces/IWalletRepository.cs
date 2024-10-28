@@ -14,4 +14,8 @@ public interface IWalletRepository
     Task<IWallet?> FindByIdAsync(
         Guid id,
         CancellationToken cancellationToken);
+     
+     Task<bool> UpdateBalanceAsync(
+          IWallet wallet,
+          CancellationToken cancellationToken);
 }

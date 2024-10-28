@@ -29,14 +29,18 @@ public class Response<T>
      public static Response<T> Created(T? content)
          => new(type: ResponseType.Created, content);
 
-     public static Response<T> BusinessRuleField()
-         => new(type: ResponseType.BusinessRuleFiled);
+     public static Response<T> BusinessRuleField(string error)
+         => new(type: ResponseType.BusinessRuleFiled, errors: [error]);
+
      public static Response<T> ValidationError(
          ValidationResult validationResult)
          => new(
              type: ResponseType.ValidationError,
              errors: validationResult.Errors.Select(
                  _ => _.ErrorMessage).ToList());
+     public static Response<T> FailedDependency()
+          => new(type: ResponseType.FailedDependency);
+
      public enum ResponseType
      {
           Success,
@@ -45,5 +49,6 @@ public class Response<T>
           ContentNotExits,
           Created,
           ValidationError,
+          FailedDependency
      }
 }
