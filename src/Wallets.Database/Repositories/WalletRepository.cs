@@ -20,7 +20,8 @@ public sealed class WalletRepository : IWalletRepository
                               name as {nameof(WalletMapper.Name)},
                               tax_id as {nameof(WalletMapper.TaxId)},
                               account_branch as {nameof(WalletMapper.AccountBranch)},
-                              account_number as {nameof(WalletMapper.AccountNumber)} 
+                              account_number as {nameof(WalletMapper.AccountNumber)},
+                              balance as {nameof(WalletMapper.Balance)}
                          FROM public.wallets WHERE id = @{nameof(id)}";
 
           var command = new CommandDefinition(
@@ -82,5 +83,29 @@ public sealed class WalletRepository : IWalletRepository
           int total = await _dbConnection.ExecuteScalarAsync<int>(command);
 
           return total > uint.MinValue;
+     }
+
+     public async Task<bool> UpdateBalanceAsync(
+          IWallet wallet, 
+          CancellationToken cancellationToken)
+     {
+          var rawSql = @$"UPDATE public.wallets
+                              SET balance = @balance
+                         WHERE wallets.id = @id";
+          
+          var mapper = WalletMapper.FactoryByEntity(wallet);
+
+          var command = new CommandDefinition(
+               commandText: rawSql,
+               parameters: new 
+               {
+                    balance = mapper.Balance,
+                    id = mapper.Id,
+               }
+          );
+
+          int rowsAffected = await _dbConnection.ExecuteAsync(command);
+
+          return rowsAffected > uint.MinValue;
      }
 }
