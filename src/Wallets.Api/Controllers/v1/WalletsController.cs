@@ -85,6 +85,8 @@ public class WalletsController(
 
           return result.Type switch
           {
+               Response<DepositWalletBalanceResponse>.ResponseType.ValidationError
+                    => BadRequest(result.Errors),
                Response<DepositWalletBalanceResponse>.ResponseType.ContentNotExits
                    => NoContent(),
                Response<DepositWalletBalanceResponse>.ResponseType.FailedDependency

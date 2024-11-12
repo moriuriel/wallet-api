@@ -29,6 +29,8 @@ public static class ApplicationDependency
      public static IServiceCollection AddValidators(this IServiceCollection services)
      {
           services.AddScoped<IValidator<CreateWalletRequest>, CreateWalletRequestValidator>();
+          services.AddScoped<IValidator<DepositWalletBalanceRequest>, DepositWalletBalanceRequestValidator>();
+          
           return services;
      }
 }
