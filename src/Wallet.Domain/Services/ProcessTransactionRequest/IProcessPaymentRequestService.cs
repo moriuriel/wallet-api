@@ -1,9 +1,9 @@
 ﻿using Wallets.Domain.Shared;
 using Wallets.Domain.Entities.Interfaces;
 
-namespace Wallets.Domain.Services.ProcessPaymentRequest;
+namespace Wallets.Domain.Services.ProcessTransactionRequest;
 
-public interface IProcessPaymentRequestService
+public interface IProcessTransactionRequestService
 {
      Result Proccess(
          IWallet payer,
