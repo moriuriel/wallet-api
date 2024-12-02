@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Wallets.Application.UseCases.CreateWallet;
 using Wallets.Application.UseCases.DepositWalletBalance;
 using Wallets.Application.UseCases.FindWalletById;
+using Wallets.Application.UseCases.ProcessTransaction;
 
 namespace Wallets.Application;
 
@@ -23,6 +24,7 @@ public static class ApplicationDependency
           services.AddScoped<ICreateWalletUseCase, CreateWalletUseCase>();
           services.AddScoped<IFindWalletByIdUseCase, FindWalletByIdUseCase>();
           services.AddScoped<IDepositWalletBalanceUseCase, DepositWalletBalanceUseCase>();
+          services.AddScoped<IProcessTransactionUseCase, ProcessTransactionUseCase>();
           return services;
      }
 

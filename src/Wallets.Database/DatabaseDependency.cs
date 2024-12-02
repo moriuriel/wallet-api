@@ -19,6 +19,7 @@ public static class DatabaseDependency
           services.AddScoped<IDbConnection>(_ => new NpgsqlConnection(connectionString));
 
           services.AddScoped<IWalletRepository, WalletRepository>();
+          services.AddScoped<ITransactionRepository, TransactionRepository>();
           return services;
      }
 }

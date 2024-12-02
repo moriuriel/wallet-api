@@ -6,11 +6,12 @@ namespace Wallets.Application.UseCases.ProcessTransaction;
 
 public sealed class ProcessTransactionUseCase(
      IWalletRepository walletRepository,
-     IProcessTransactionRequestService processTransactionRequestService) 
+     IProcessTransactionRequestService processTransactionRequestService,
+     ITransactionRepository transactionRepository)
      : IProcessTransactionUseCase
 {
      public async Task<Response<ProcessTransactionResponse>> HandleAsync(
-          ProcessTransactionRequest processTransactionRequest, 
+          ProcessTransactionRequest processTransactionRequest,
           CancellationToken cancellationToken)
      {
           var transaction = processTransactionRequest.ToTransaction();
@@ -20,7 +21,7 @@ public sealed class ProcessTransactionUseCase(
                cancellationToken
           );
 
-          if(payerWallet is null)
+          if (payerWallet is null)
           {
                return Response<ProcessTransactionResponse>.BusinessRuleField(
                     error: "Payer Wallet Not Found.");
@@ -31,7 +32,7 @@ public sealed class ProcessTransactionUseCase(
                cancellationToken
           );
 
-          if(receiverWallet is null)
+          if (receiverWallet is null)
           {
                return Response<ProcessTransactionResponse>.BusinessRuleField(
                     error: "Receiver Wallet Not Found.");
@@ -41,19 +42,33 @@ public sealed class ProcessTransactionUseCase(
                payerWallet,
                receiverWallet,
                amount: transaction.Amount);
-          
-          if(processTransactionResult.IsFailure)
+
+          if (processTransactionResult.IsFailure)
           {
                return Response<ProcessTransactionResponse>.BusinessRuleField(
                     error: processTransactionResult.Error.Message);
           }
-          
-          if(!await walletRepository.UpdateBalanceAsync(
+
+          var updateBalancePayerTask = walletRepository.UpdateBalanceAsync(
                payerWallet,
-               cancellationToken) || 
-               !await walletRepository.UpdateBalanceAsync(
+               cancellationToken);
+
+          var updateBalanceReceiverTask = walletRepository.UpdateBalanceAsync(
                receiverWallet,
-               cancellationToken))
+               cancellationToken);
+
+          var transactionInsertTask = transactionRepository.InsertAsync(
+               transaction,
+               cancellationToken);
+
+          await Task.WhenAll(
+               updateBalancePayerTask,
+               updateBalanceReceiverTask,
+               transactionInsertTask);
+
+          if (!updateBalancePayerTask.Result || 
+               !updateBalanceReceiverTask.Result ||
+               !transactionInsertTask.Result)
           {
                return Response<ProcessTransactionResponse>.FailedDependency();
           }

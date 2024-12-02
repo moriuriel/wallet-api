@@ -6,13 +6,8 @@ using Wallets.Domain.Interfaces;
 
 namespace Wallets.Database.Repositories;
 
-public sealed class WalletRepository : IWalletRepository
+public sealed class WalletRepository(IDbConnection dbConnection) : IWalletRepository
 {
-     private readonly IDbConnection _dbConnection;
-
-     public WalletRepository(IDbConnection dbConnection)
-       => _dbConnection = dbConnection;
-
      public async Task<IWallet?> FindByIdAsync(Guid id, CancellationToken cancellationToken)
      {
           var rawSql = $@"SELECT 
@@ -32,7 +27,7 @@ public sealed class WalletRepository : IWalletRepository
                cancellationToken: cancellationToken
           );
 
-          var wallet = await _dbConnection.QuerySingleAsync<WalletMapper>(command);
+          var wallet = await dbConnection.QuerySingleAsync<WalletMapper>(command);
 
           if(wallet is null)
                return default;
@@ -65,7 +60,7 @@ public sealed class WalletRepository : IWalletRepository
             cancellationToken: cancellationToken
           );
 
-          return _dbConnection.ExecuteAsync(command);
+          return dbConnection.ExecuteAsync(command);
      }
 
      public async Task<bool> IsExistsAccountHolderAsync(
@@ -80,7 +75,7 @@ public sealed class WalletRepository : IWalletRepository
             cancellationToken: cancellationToken
           );
 
-          int total = await _dbConnection.ExecuteScalarAsync<int>(command);
+          int total = await dbConnection.ExecuteScalarAsync<int>(command);
 
           return total > uint.MinValue;
      }
@@ -104,7 +99,7 @@ public sealed class WalletRepository : IWalletRepository
                }
           );
 
-          int rowsAffected = await _dbConnection.ExecuteAsync(command);
+          int rowsAffected = await dbConnection.ExecuteAsync(command);
 
           return rowsAffected > uint.MinValue;
      }

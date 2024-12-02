@@ -4,7 +4,7 @@ using Wallets.Domain.ValueObjects;
 
 namespace Wallets.Database.Mappers;
 
-public sealed class WalletMapper
+internal sealed class WalletMapper
 {
      public string Id { get; init; } = string.Empty;
      public string Name { get; init; } = string.Empty;
@@ -33,7 +33,7 @@ public sealed class WalletMapper
 
      public static WalletMapper FactoryByEntity(IWallet wallet)
        => new()
-       {
+          {
             Id = wallet.Id.ToString(),
             Name = wallet.AccountHolder.Name,
             TaxId = wallet.AccountHolder.TaxId,
@@ -41,5 +41,5 @@ public sealed class WalletMapper
             AccountBranch = wallet.Account.Branch,
             AccountNumber = wallet.Account.Number,
             CreatedAt = DateTime.Now,
-       };
+          };
 }
