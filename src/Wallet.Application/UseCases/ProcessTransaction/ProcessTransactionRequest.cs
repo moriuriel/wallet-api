@@ -39,4 +39,9 @@ public sealed class ProcessTransactionRequest : IProcessTransactionRequest
                receiverId,
                amount,
                transactionDate);
+
+     public static ProcessTransactionRequest Factory(Guid payerId)
+     {
+          throw new NotImplementedException();
+     }
 }

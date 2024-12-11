@@ -3,6 +3,7 @@ using Asp.Versioning;
 using Wallets.Api.Commons;
 using Wallets.Application;
 using Wallets.Database;
+using Wallets.Domain.Services.ProcessTransactionRequest;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +12,7 @@ builder.Services.AddSingleton(configuration);
 
 builder.Services.AddApplicationDependency();
 builder.Services.AddDatabaseDependency(configuration);
+builder.Services.AddScoped<IProcessTransactionRequestService, ProcessTransactionRequestService>();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
