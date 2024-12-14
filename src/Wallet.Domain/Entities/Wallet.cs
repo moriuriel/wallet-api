@@ -38,7 +38,10 @@ public class Wallet : AggregateRoot, IWallet
                return Result.Failure(
                    DomainErrors.Wallet.AmountRequestedMustBeGreaterThanZero);
 
-          Balance += amount;
+          if(Balance is null)
+               Balance = amount;
+          else
+               Balance += amount;
 
           return Result.Success();
      }

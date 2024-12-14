@@ -28,7 +28,7 @@ public sealed class ProcessTransactionUseCase(
           }
 
           var receiverWallet = await walletRepository.FindByIdAsync(
-               id: transaction.PayerId,
+               id: transaction.ReceiverId,
                cancellationToken
           );
 
@@ -49,29 +49,31 @@ public sealed class ProcessTransactionUseCase(
                     error: processTransactionResult.Error.Message);
           }
 
-          var updateBalancePayerTask = walletRepository.UpdateBalanceAsync(
+          var updateBalancePayer =  await walletRepository.UpdateBalanceAsync(
                payerWallet,
                cancellationToken);
-
-          var updateBalanceReceiverTask = walletRepository.UpdateBalanceAsync(
-               receiverWallet,
-               cancellationToken);
-
-          var transactionInsertTask = transactionRepository.InsertAsync(
-               transaction,
-               cancellationToken);
-
-          await Task.WhenAll(
-               updateBalancePayerTask,
-               updateBalanceReceiverTask,
-               transactionInsertTask);
-
-          if (!updateBalancePayerTask.Result || 
-               !updateBalanceReceiverTask.Result ||
-               !transactionInsertTask.Result)
+          if (!updateBalancePayer)
           {
                return Response<ProcessTransactionResponse>.FailedDependency();
           }
+          
+          var updateBalanceReceiver = await walletRepository.UpdateBalanceAsync(
+               receiverWallet,
+               cancellationToken);
+          
+          if (!updateBalanceReceiver)
+          {
+               return Response<ProcessTransactionResponse>.FailedDependency();
+          }
+
+          var transactionInsert =  await transactionRepository.InsertAsync(
+               transaction,
+               cancellationToken);
+          if (!transactionInsert)
+          {
+               return Response<ProcessTransactionResponse>.FailedDependency();
+          }
+          
 
           return Response<ProcessTransactionResponse>.Created(
                content: ProcessTransactionResponse.Factory(transactionId: transaction.Id));
